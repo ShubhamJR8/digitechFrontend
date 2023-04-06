@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 style="color:maroon;text-align: center;">Fill your card details</h1>
+    <form [formGroup]="cardForm" (ngSubmit)="card()">
+        <div class="form-group">
+            <label>Card Number</label>
+            <input type="number" class="form-control" formControlName="cardNumber">
+            <p
+            *ngIf = "(cardForm.controls['cardNumber'].touched) && (cardForm.controls['cardNumber'].invalid)"
+            class="alert alert-danger">Please enter a 16 digit number</p>
+        </div>
+        <div class="form-group">
+            <label>Name on Card</label>
+            <input type="text" class="form-control" formControlName="cardName">
+            <p
+            *ngIf = "(cardForm.controls['cardName'].touched) && (cardForm.controls['cardName'].invalid)"
+            class="alert alert-danger">Please enter a valid name</p>
+        </div>
+        <div class="form-group">
+            <label>Valid Thru</label>
+            <input type="date" class="form-control" formControlName="cardDate">
+            <p
+            *ngIf = "(cardForm.controls['cardDate'].touched) && (cardForm.controls['cardDate'].invalid)"
+            class="alert alert-danger">Please enter Date</p>
+        </div>
+        <br>
+        <br>
+
+
+        <button type="submit" class="btn btn-primary mb-2" [disabled]="!cardForm.valid">Go to Checkout</button>
+    </form>
+</div>
+
+

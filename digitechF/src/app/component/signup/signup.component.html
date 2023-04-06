@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Sign Up</h1>
+                    <h6>Register Yourself !</h6>
+                </div>
+                    <form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
+                        <p class="text-danger" *ngIf="errMessage != ''">*User Already Exists!</p>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">User Name</label>
+                            <input formControlName="fullname" type="text" class="form-control" id="exampleInputPassword1">
+                            <span class="text-danger" *ngIf="signupForm.controls['fullname'].dirty && signupForm.controls['fullname'].errors?.['nameInvalid']">*{{signupForm.controls['fullname'].errors?.['nameInvalid'].message}}  </span>
+                            <span class="text-danger" *ngIf="signupForm.controls['fullname'].dirty && signupForm.hasError('required','fullname')">*User Name is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text text-primary">We'll never share your email with anyone else.</div>
+                            <span class="text-danger" *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">*Email ID is required</span>
+                            <span class="text-danger" *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('email','email')">*Email ID format is not valid</span>
+
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                            <span class="text-danger" *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">*Password is required  </span>
+                            <span class="text-danger" *ngIf="signupForm.controls['password'].dirty && signupForm.controls['password'].errors?.['passwordInvalid']">*{{signupForm.controls['password'].errors?.['passwordInvalid'].message}}</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                            <input formControlName="confirmPassword" type="password" class="form-control" id="exampleInputPassword1">
+                            <span class="text-danger" *ngIf="signupForm.controls['confirmPassword'].dirty && signupForm.hasError('required','confirmPassword')">*Please confirm your password  </span>
+                            <span class="text-danger" *ngIf="signupForm.controls['confirmPassword'].dirty && signupForm.controls['confirmPassword'].errors?.['passwordInvalid']">*{{signupForm.controls['confirmPassword'].errors?.['passwordInvalid'].message}}</span>
+                            <span class="text-danger" *ngIf="signupForm.controls['confirmPassword'].touched && signupForm.controls['confirmPassword'].errors?.['Invalid']">*{{signupForm.controls['confirmPassword'].errors?.['Invalid'].message}}</span>
+                            <span class="text-danger" *ngIf="signupForm.controls['confirmPassword'].touched && signupForm.controls['password'].touched && !MatchPassword(signupForm.controls['password'])(signupForm.controls['confirmPassword'])">*Password and Confirm Password are not Matching</span>
+
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
+                            <input formControlName="mobile" type="number" class="form-control" id="exampleInputPassword1">
+                            <span class="text-danger" *ngIf="signupForm.controls['mobile'].dirty && signupForm.hasError('required','mobile')">*Mobile Number is required</span>
+                            <span class="text-danger" *ngIf="signupForm.controls['mobile'].dirty && signupForm.hasError('pattern','mobile')">*Mobile Number is not valid</span>
+
+
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" [disabled]="!signupForm.valid">Sign Up</button>
+                    </form>
+                    <a routerLink="/login">Already Registered? Click to Login!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

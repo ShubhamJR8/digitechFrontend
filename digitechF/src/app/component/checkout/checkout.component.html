@@ -1,0 +1,24 @@
+<!-- <app-cart (dataEmitter)="receivedData = $event"></app-cart> -->
+
+<h2>Checkout</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.name }}</td>
+      <td>{{ item.price | currency }}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>Total</td>
+    </tr>
+  </tfoot>
+</table>
+<button (click)="clearCart()">Clear Cart</button>

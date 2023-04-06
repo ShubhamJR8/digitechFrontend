@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Profile</h1>
+                    <h6>Please Enter old Password and new password to update!</h6>
+                </div>
+                    <form [formGroup]="profileForm" (ngSubmit)="login()">
+                        <!-- <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text text-primary">We'll never share your email with anyone else.</div>
+                            <span class="text-danger" *ngIf="profileForm.controls['email'].dirty && profileForm.hasError('required','email')">*Email ID is required</span>
+                        </div> -->
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Old Password</label>
+                            <input formControlName="oldpassword" type="password" class="form-control" id="exampleInputPassword1">
+                            <span class="text-danger" *ngIf="profileForm.controls['oldpassword'].dirty && profileForm.hasError('required','oldpassword')">*Password is required  </span>
+                            <span class="text-danger" *ngIf="profileForm.controls['oldpassword'].dirty && profileForm.controls['oldpassword'].errors?.['passwordInvalid']">*{{profileForm.controls['oldpassword'].errors?.['passwordInvalid'].message}}</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">New Password</label>
+                            <input formControlName="newpassword" type="password" class="form-control" id="exampleInputPassword1">
+                            <span class="text-danger" *ngIf="profileForm.controls['newpassword'].dirty && profileForm.hasError('required','newpassword')">*Password is required  </span>
+                            <span class="text-danger" *ngIf="profileForm.controls['newpassword'].dirty && profileForm.controls['newpassword'].errors?.['passwordInvalid']">*{{profileForm.controls['newpassword'].errors?.['passwordInvalid'].message}}</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Confirm New Password</label>
+                            <input formControlName="confirmnewPassword" type="password" class="form-control" id="exampleInputPassword1">
+                            <span class="text-danger" *ngIf="profileForm.controls['confirmnewPassword'].dirty && profileForm.hasError('required','confirmnewPassword')">*Please confirm your password  </span>
+                            <span class="text-danger" *ngIf="profileForm.controls['confirmnewPassword'].dirty && profileForm.controls['confirmnewPassword'].errors?.['passwordInvalid']">*{{profileForm.controls['confirmnewPassword'].errors?.['passwordInvalid'].message}}</span>
+                            <span class="text-danger" *ngIf="profileForm.controls['confirmnewPassword'].touched && profileForm.controls['confirmnewPassword'].errors?.['Invalid']">*{{profileForm.controls['confirmnewPassword'].errors?.['Invalid'].message}}</span>
+                            <span class="text-danger" *ngIf="profileForm.controls['confirmnewPassword'].touched && profileForm.controls['newpassword'].touched && !MatchPassword(profileForm.controls['newpassword'])(profileForm.controls['confirmnewPassword'])">*Password and Confirm Password are not Matching</span>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" [disabled]="!profileForm.valid">Submit</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
